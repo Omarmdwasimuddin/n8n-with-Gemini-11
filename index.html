@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Magic Summarizer Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8b5cf6;
+            --secondary: #06b6d4;
+        }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #030712;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.15) 0px, transparent 50%);
+        }
+        .glass-panel { 
+            background: rgba(17, 24, 39, 0.7); 
+            backdrop-filter: blur(20px); 
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        .input-glow:focus {
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+            border-color: var(--primary);
+        }
+        .btn-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-gradient:hover {
+            filter: brightness(1.1);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+            transform: translateY(-2px);
+        }
+        .response-card {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(6, 182, 212, 0.05));
+            border: 1px solid rgba(139, 92, 246, 0.1);
+        }
+        .loader {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="text-slate-100 min-h-screen flex items-center justify-center p-4">
+
+    <div class="glass-panel p-8 md:p-12 rounded-[2.5rem] w-full max-w-2xl overflow-hidden relative">
+        <div class="absolute -top-24 -right-24 w-48 h-48 bg-purple-600/20 blur-[100px] rounded-full"></div>
+        
+        <div class="relative z-10 text-center mb-10">
+            <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-full mb-6">
+                <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
+                <span class="text-xs font-bold tracking-widest text-slate-300 uppercase">n8n Automation Engine</span>
+            </div>
+            <h1 class="text-5xl font-extrabold tracking-tight mb-4">
+                <span class="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">AI Intelligence</span>
+            </h1>
+            <p class="text-slate-400 text-lg font-medium">Summarize complex data in seconds.</p>
+        </div>
+        
+        <div class="space-y-6 relative z-10">
+            <div class="relative">
+                <textarea id="userInput" rows="5" 
+                    class="w-full p-6 bg-black/40 border border-slate-800 rounded-3xl input-glow outline-none transition-all duration-300 text-slate-200 placeholder-slate-600 resize-none text-md" 
+                    placeholder="Enter your content here..."></textarea>
+            </div>
+            
+            <button onclick="sendData()" id="btn" 
+                class="btn-gradient w-full text-white font-extrabold py-5 rounded-3xl flex items-center justify-center gap-4 text-lg">
+                <span id="btnText">Synthesize Now</span>
+                <span id="loaderIcon" class="loader hidden"></span>
+            </button>
+        </div>
+
+        <div id="resultBox" class="hidden mt-10 space-y-4 fade-in">
+            <div class="flex items-center gap-3 text-cyan-400 font-bold px-2">
+                <div class="p-2 bg-cyan-400/10 rounded-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                Optimized Result
+            </div>
+            <div class="response-card p-8 rounded-[2rem] relative group">
+                <p id="responseText" class="text-slate-300 leading-relaxed text-md whitespace-pre-line"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function sendData() {
+            const text = document.getElementById('userInput').value;
+            const btn = document.getElementById('btn');
+            const btnText = document.getElementById('btnText');
+            const loaderIcon = document.getElementById('loaderIcon');
+            const resultBox = document.getElementById('resultBox');
+            const responseText = document.getElementById('responseText');
+
+            if(!text) {
+                alert("Please provide some text for the AI to analyze.");
+                return;
+            }
+
+            btn.disabled = true;
+            btnText.innerText = "Processing...";
+            loaderIcon.classList.remove('hidden');
+            resultBox.classList.add('hidden');
+
+            try {
+                const response = await fetch('WEBHOOK_URL', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text: text })
+                });
+
+                const data = await response.text();
+                responseText.innerText = data;
+                resultBox.classList.remove('hidden');
+            } catch (error) {
+                alert("Connection failed! Check if n8n is active and CORS is enabled.");
+            } finally {
+                btn.disabled = false;
+                btnText.innerText = "Synthesize Now";
+                loaderIcon.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
