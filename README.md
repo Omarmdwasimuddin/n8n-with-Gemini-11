@@ -4,5 +4,6 @@
 ![](https://imgur.com/1m0j0Jc.png)
 
 #### close koro n8n powershell (Ctrl+c)--->prompt daw: $env:N8N_CORS_ALLOWED_ORIGINS="*"; n8n --->Enter daw
-#### click koro Webhook er + sign--->search & click: Google Gemini--->click: Message a model--->click: Set up credential--->notun ekta browser open koro--->search & click: ai studio gemini---> click: Get started--->click: Get API key--->copy koro: API Key
+#### click koro Webhook er + sign--->search & click: Google Gemini--->click: Message a model--->click: Set up credential--->notun ekta browser open koro--->search & click: ai studio gemini---> click: Get started--->click: Get API key--->copy koro: API Key--->Set up credential er API Key te paste koro & Save button click koro.
 ![](https://imgur.com/znayjyY.png)
+![](https://imgur.com/2DohqCm.png)
