@@ -13,5 +13,8 @@
 ![](https://imgur.com/pCm2BBA.png)
 #### Send a message er +sign click koro--->search & click: Respond to Webhook--->value set koro
 ![](https://imgur.com/JBkNSOX.png)
-#### update koro--->Webhook er--->Respond--->ar select & copy koro: Product URL--->paste koro: index.html
+#### update koro--->Webhook er--->Respond--->ar select & copy koro: Product URL--->paste koro: index.html---> er por just Publish koro project
 ![](https://imgur.com/BHkSrVs.png)
+
+#### prompt daw---
+![](https://imgur.com/D0CiQrU.png)
