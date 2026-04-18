@@ -1,3 +1,4 @@
 ## n8n-with-Gemini-11
 
-#### click: Add first step--->search & click: webhook--->HTTP Method POST daw & POST url copy koro--->index.html er 
+#### Click: Add first step--->search & click: webhook--->HTTP Method POST daw & POST url copy koro--->index.html e scroll kore nicher dike WEBHOOK_URL e POST url paste koro
+![](https://imgur.com/1m0j0Jc.png)
