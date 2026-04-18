@@ -4,4 +4,5 @@
 ![](https://imgur.com/1m0j0Jc.png)
 
 #### close koro n8n powershell (Ctrl+c)--->prompt daw: $env:N8N_CORS_ALLOWED_ORIGINS="*"; n8n --->Enter daw
+#### click koro Webhook er + sign--->search & click: Google Gemini--->click: Message a model--->
 ![](https://imgur.com/1m0j0Jc.png)
