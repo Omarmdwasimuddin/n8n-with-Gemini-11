@@ -9,4 +9,5 @@
 ![](https://imgur.com/2DohqCm.png)
 ![](https://imgur.com/O1YOiQp.png)
 
-#### Message a model er + sign click koro--->search & click: gmail--->click: Send a message--->
+#### Message a model er + sign click koro--->search & click: gmail--->click: Send a message--->value set koro
+![](https://imgur.com/pCm2BBA.png)
